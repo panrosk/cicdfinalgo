@@ -49,15 +49,7 @@ jobs:
         run: |
           ko publish --tags "latest,${{ github.sha }}" --platform=linux/amd64,linux/arm64 .
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Run Go Semantic Release
+        uses: go-semantic-release/action@v1
         with:
-          node-version: "18.x"
-
-      - name: Install Semantic Release
-        run: npm install -g semantic-release @semantic-release/git @semantic-release/changelog @semantic-release/exec
-
-      - name: Run Semantic Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: semantic-release --branches main
+          github-token: ${{ secrets.GH_TOKEN }
