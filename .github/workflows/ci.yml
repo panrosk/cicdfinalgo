@@ -1,10 +1,8 @@
 name: Release
-
 on:
   push:
     branches:
       - main
-
 jobs:
   release:
     runs-on: ubuntu-22.04
@@ -47,14 +45,13 @@ jobs:
         env:
           KO_DOCKER_REPO: "docker.io/${{ secrets.DOCKER_USERNAME }}"
         run: |
-          ko publish --tags "latest,${{ github.sha }}" --platform=linux/amd64,linux/arm64 .
+          ko publish --base-import-paths --tags "latest,${{ github.sha }}" --platform=linux/amd64,linux/arm64 .
 
       - name: Run Go Semantic Release
         uses: go-semantic-release/action@v1
         with:
           github-token: ${{ secrets.GH_TOKEN }}
 
-      # Nueva etapa para actualizar el manifiesto
       - name: Checkout cicdfinalgo-argocd repository
         uses: actions/checkout@v3
         with:
