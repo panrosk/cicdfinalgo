@@ -69,9 +69,9 @@ jobs:
 
       - name: Update deployment manifest
         run: |
-          sed -i "s#image: .*#image: docker.io/${{ secrets.DOCKER_USERNAME }}/final-project:${{ github.sha }}#g" deployment.yml
+          sed -i "s#image: .*#image: docker.io/${{ secrets.DOCKER_USERNAME }}/cicdfinalgo:${{ github.sha }}#g" deployment.yml
           git add deployment.yml
-          git commit -m "Update deployment image to docker.io/${{ secrets.DOCKER_USERNAME }}/final-project:${{ github.sha }}"
+          git commit -m "Update deployment image to docker.io/${{ secrets.DOCKER_USERNAME }}/cicdfinalgo:${{ github.sha }}"
 
       - name: Push changes
         run: git push origin main
