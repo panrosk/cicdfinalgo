@@ -1,0 +1,53 @@
+# Binarios compilados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Archivos de compilación y caché de Go
+*.out
+*.a
+*.o
+*.lo
+*.la
+
+# Caché del módulo Go
+go.sum
+/go.sum
+/go.mod
+
+# Directorios de caché de Go y dependencias
+/.idea/
+/.vscode/
+/tmp/
+/dist/
+/build/
+/bin/
+/pkg/
+vendor/
+
+# Archivos de configuración temporales
+*.log
+*.env
+*.env.*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos relacionados con editores y herramientas
+*.swp
+*.swo
+*.bak
+*.tmp
+*.backup
+
+# Archivos generados por tests
+*.coverprofile
+*.coverage
+*.prof
+
+# Archivos de configuración para Docker
+docker-compose.override.yml
