@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Nombre del archivo que contiene el mensaje del commit
+commit_msg_file="$1"
+
+# Leer el contenido del mensaje del commit
+commit_msg=$(cat "$commit_msg_file")
+
+# Patrón para validar Conventional Commits
+# Los tipos permitidos son: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+commit_pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9-]+\))?: .+$'
+
+# Validar que el mensaje cumpla con el patrón
+if ! [[ "$commit_msg" =~ $commit_pattern ]]; then
+    echo "Error: El mensaje del commit no sigue las convenciones de Conventional Commits"
+    echo ""
+    echo "El formato debe ser: <type>[optional scope]: <description>"
+    echo ""
+    echo "Tipos permitidos:"
+    echo "- feat: Nuevas características"
+    echo "- fix: Corrección de errores"
+    echo "- docs: Cambios en la documentación"
+    echo "- style: Cambios que no afectan el significado del código"
+    echo "- refactor: Cambios en el código que no corrigen errores ni añaden funcionalidades"
+    echo "- perf: Cambios que mejoran el rendimiento"
+    echo "- test: Añadir o corregir tests"
+    echo "- build: Cambios que afectan el sistema de build"
+    echo "- ci: Cambios en la configuración de CI"
+    echo "- chore: Cambios en tareas de mantenimiento"
+    echo "- revert: Revierte un commit anterior"
+    echo ""
+    echo "Ejemplos válidos:"
+    echo "feat: añadir búsqueda de usuarios"
+    echo "fix(auth): corregir error en la validación del token"
+    echo "docs: actualizar README con nuevas instrucciones"
+    exit 1
+fi
+
+# Validar longitud del mensaje (recomendado: máximo 72 caracteres)
+if [ ${#commit_msg} -gt 72 ]; then
+    echo "Warning: El mensaje del commit es muy largo (${#commit_msg} caracteres)"
+    echo "Se recomienda mantener el mensaje principal en menos de 72 caracteres"
+    echo "Considera usar el cuerpo del mensaje para información adicional"
+    echo ""
+    echo "Formato recomendado:"
+    echo "<type>[optional scope]: <subject>      # menos de 72 caracteres"
+    echo ""
+    echo "<optional body>                        # línea en blanco + descripción detallada"
+    echo ""
+    echo "<optional footer>"
+    exit 1
+fi
+
+exit 0
