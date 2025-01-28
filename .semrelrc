@@ -14,7 +14,7 @@
           { "type": "style", "release": false },
           { "type": "perf", "release": "patch" },
           { "type": "test", "release": false },
-          { "type": "build", "release": "patch" }, // Agregado para commits de build
+          { "type": "build", "release": "patch" },
           { "breaking": true, "release": "major" }
         ]
       }
@@ -31,7 +31,7 @@
     "provider": {
       "name": "github",
       "options": {
-        "github_repository": "tu-usuario/tu-repositorio"
+        "github_repository": "panrosk/cicdfinalgo"
       }
     },
     "files-updater": {
