@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	who := utils.SayHiTo("Mundo")
+	who := utils.SayHiTo("Raymundo")
 
 	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, who)
