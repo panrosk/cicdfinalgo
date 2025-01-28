@@ -1,9 +1,9 @@
 {
   "branch": "main",
-  "plugins": {
-    "commit-analyzer": {
-      "name": "default@^1.0.0",
-      "options": {
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
         "preset": "conventionalcommits",
         "releaseRules": [
           {
@@ -48,21 +48,23 @@
           }
         ]
       }
-    },
-    "ci-condition": {
-      "name": "default"
-    },
-    "changelog-generator": {
-      "name": "default",
-      "options": {
-        "emojis": "true"
+    ],
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "options": {
+          "emojis": "true"
+        }
       }
-    },
-    "provider": {
-      "name": "github",
-      "options": {
-        "github_repository": "panrosk/cicdfinalgo"
+    ],
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
       }
-    }
-  }
+    ],
+    "@semantic-release/github"
+  ]
 }
+
