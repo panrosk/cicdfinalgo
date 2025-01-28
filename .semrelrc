@@ -1,0 +1,26 @@
+{
+  "branch": "main",
+  "plugins": {
+    "commit-analyzer": {
+      "name": "default@^1.0.0"
+    },
+    "ci-condition": {
+      "name": "default"
+    },
+    "changelog-generator": {
+      "name": "default",
+      "options": {
+        "emojis": "true"
+      }
+    },
+    "provider": {
+      "name": "github",
+      "options": {
+        "github_repository": "tu-usuario/tu-repositorio"
+      }
+    },
+    "files-updater": {
+      "names": ["go.mod"]
+    }
+  }
+}
