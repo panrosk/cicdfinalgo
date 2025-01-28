@@ -19,7 +19,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: "1.21.x"
+          go-version: "1.22.x"
 
       - name: Install dependencies
         run: go mod tidy
@@ -48,4 +48,4 @@ jobs:
         env:
           KO_DOCKER_REPO: "docker.io/${{ secrets.DOCKER_USERNAME }}"
         run: |
-          ko publish --tags "latest,${{ github.sha }}" --platform=linux/amd64,linux/arm64 ./...
+          ko publish --tags "latest,${{ github.sha }}" --platform=linux/amd64,linux/arm64 .
