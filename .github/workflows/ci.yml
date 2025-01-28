@@ -53,3 +53,25 @@ jobs:
         uses: go-semantic-release/action@v1
         with:
           github-token: ${{ secrets.GH_TOKEN }}
+
+      # Nueva etapa para actualizar el manifiesto
+      - name: Checkout cicdfinalgo-argocd repository
+        uses: actions/checkout@v3
+        with:
+          repository: "panrosk/cicdfinalgo-argocd"
+          ref: "main"
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Setup Git config
+        run: |
+          git config --global user.email "oskrf13@gmail.com"
+          git config --global user.name "panskrok"
+
+      - name: Update deployment manifest
+        run: |
+          sed -i "s#image: .*#image: docker.io/${{ secrets.DOCKER_USERNAME }}/final-project:${{ github.sha }}#g" deployment.yml
+          git add deployment.yml
+          git commit -m "Update deployment image to docker.io/${{ secrets.DOCKER_USERNAME }}/final-project:${{ github.sha }}"
+
+      - name: Push changes
+        run: git push origin main
