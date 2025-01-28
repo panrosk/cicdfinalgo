@@ -10,7 +10,7 @@ on:
 jobs:
   release:
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-22.04 # Última versión LTS de Ubuntu
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
@@ -49,3 +49,16 @@ jobs:
           KO_DOCKER_REPO: "docker.io/${{ secrets.DOCKER_USERNAME }}"
         run: |
           ko publish --tags "latest,${{ github.sha }}" --platform=linux/amd64,linux/arm64 .
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+
+      - name: Install Semantic Release
+        run: npm install -g semantic-release @semantic-release/exec
+
+      - name: Run Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: semantic-release
