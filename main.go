@@ -22,6 +22,8 @@ func main() {
 		who := utils.SayHiTo("Raymundo y todo el mundo")
 		fmt.Fprint(w, who)
 
+		metrics.HttpRequestsTotal.WithLabelValues("/hello").Inc()
+
 		duration := time.Since(start).Seconds()
 		metrics.HttpRequestDuration.WithLabelValues("/hello").Observe(duration)
 
