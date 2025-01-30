@@ -19,7 +19,7 @@ func main() {
 		metrics.ActiveConnections.Inc()
 		defer metrics.ActiveConnections.Dec()
 
-		who := utils.SayHiTo("Raymundo y todo el mundo")
+		who := utils.SayHiTo("Alex Soto ss")
 		fmt.Fprint(w, who)
 
 		metrics.HttpRequestsTotal.WithLabelValues("/hello").Inc()
