@@ -19,9 +19,6 @@ func main() {
 		metrics.ActiveConnections.Inc()
 		defer metrics.ActiveConnections.Dec()
 
-		// Error 2: Variable no utilizada
-		unusedVar := "Esto no se usa"
-
 		who := utils.SayHiTo("Raymundo y todo el mundo")
 		fmt.Fprint(w, who)
 
